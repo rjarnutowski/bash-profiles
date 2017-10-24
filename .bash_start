@@ -3,17 +3,21 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 alias ls='ls -GFh'
 
-
-if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
-
-if [ -f ~/personal/.bash_aliases ]; then
-	. ~/personal/.bash_aliases
+if [ -f ~/git/bash-profiles/.bash_aliases ]; then
+	. ~/git/bash-profiles/.bash_aliases
 fi
 
-if [ -f ~/personal/.bash_functions ]; then
-        . ~/personal/.bash_functions
+if [ -f ~/git/bash-profiles/.bash_functions ]; then
+        . ~/git/bash-profiles/.bash_functions
 fi
 
+if [ -f ~/git/bash-profiles/.bsd.bash_aliases ]; then
+	. ~/git/bash-profiles/.bsd.bash_aliases
+fi
+
+if [ -f ~/git/bash-profiles/.bsd.bash_functions ]; then
+        . ~/git/bash-profiles/.bsd.bash_functions
+fi
 
 export PATH=$PATH:/Users/rjarnutowski/.composer/vendor/bin
 
