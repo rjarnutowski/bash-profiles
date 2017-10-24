@@ -1,0 +1,81 @@
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+alias ls='ls -GFh'
+
+
+if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
+
+if [ -f ~/personal/.bash_aliases ]; then
+	. ~/personal/.bash_aliases
+fi
+
+if [ -f ~/personal/.bash_functions ]; then
+        . ~/personal/.bash_functions
+fi
+
+
+export PATH=$PATH:/Users/rjarnutowski/.composer/vendor/bin
+
+
+
+function git_branch {
+
+    GIT_BRANCH=`git branch 2>/dev/null | grep '*' | sed 's/* \(.*\)/\1/'`
+    echo $GIT_BRANCH
+
+}
+
+export -f git_branch
+
+# Git prompt
+__git_ps1 ()
+{
+        local g="$(git rev-parse --git-dir 2>/dev/null)"
+        if [ -n "$g" ]; then
+                local r
+                local b
+                if [ -d "$g/../.dotest" ]
+                then
+                        r="|AM/REBASE"
+                        b="$(git symbolic-ref HEAD 2>/dev/null)"
+                elif [ -f "$g/.dotest-merge/interactive" ]
+                then
+                        r="|REBASE-i"
+                        b="$(cat $g/.dotest-merge/head-name)"
+                elif [ -d "$g/.dotest-merge" ]
+                then
+                        r="|REBASE-m"
+                        b="$(cat $g/.dotest-merge/head-name)"
+                elif [ -f "$g/MERGE_HEAD" ]
+                then
+                        r="|MERGING"
+                        b="$(git symbolic-ref HEAD 2>/dev/null)"
+                else
+                        if [ -f $g/BISECT_LOG ]
+                        then
+                                r="|BISECTING"
+                        fi
+                        if ! b="$(git symbolic-ref HEAD 2>/dev/null)"
+                        then
+                                b="$(cut -c1-7 $g/HEAD)..."
+                        fi
+                fi
+                if [ -n "$1" ]; then
+                        printf "$1" "${b##refs/heads/}$r"
+                else
+                        printf " (%s)" "${b##refs/heads/}$r"
+                fi
+        fi
+}
+
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
+fi
+
+export PS1='\u@\h \[\033[1;34m\]\w\[\033[0m\]$(__git_ps1 "(%s)")$ '
+
+export PATH="/usr/local/sbin:$PATH"
+
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
