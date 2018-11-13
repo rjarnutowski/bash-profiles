@@ -23,7 +23,7 @@ new-alias () {
     fi
   fi
 
-  echo "alias $NAME='$DEFINTION'" >> ~/personal/.bash_aliases
+  echo "alias $NAME='$DEFINTION'" >> ~/git/bash-profiles/.bash_aliases
   . ~/.bashrc
 }
 
