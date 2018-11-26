@@ -27,6 +27,10 @@ if [ -f ~/git/bash-profiles/.bsd.bash_functions ]; then
         . ~/git/bash-profiles/.bsd.bash_functions
 fi
 
+if [ -f ~/git/bash-profiles/.bash_apps ]; then
+        . ~/git/bash-profiles/.bash_apps
+fi
+
 export PATH=$PATH:/Users/rjarnutowski/.composer/vendor/bin
 
 
