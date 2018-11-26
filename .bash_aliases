@@ -18,3 +18,4 @@ alias bamboofwork='ssh -i ~/.ssh/elasticbamboo.pk ec2-user@ec2-54-91-240-140.com
 alias bambooservices='ssh -i ~/.ssh/elasticbamboo.pk ec2-user@ec2-54-235-37-201.compute-1.amazonaws.com'
 alias composerinstall='php -d memory_limit=-1 /usr/local/bin/composer install'
 alias bastion='ssh -A bastion-tools-000.us-east-1.aws.prod.bsdinternal.com'
+alias chefupdate='cd /home/rjarnutowski/git/python_chef_updater'
