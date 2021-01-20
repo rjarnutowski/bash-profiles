@@ -7,6 +7,8 @@ export PATH=$PATH:/home/mysql/bin:/home/shared/php/bin:/home/httpd/bin:/home/jki
 export GIT_EDITOR="vim"
 export PS1='[\[\e[31m\]\u\[\e[m\]@\[\e[33m\]\h\[\e[m\] \W$(__git_ps1 " (%s)")]$ '
 export TERM=xterm-256color
-export HISTSIZE=20000
-export HISTFILESIZE=20000
+shopt -s histappend
+HISTCONTROL=ignoreboth
+HISTFILESIZE=1000000
+HISTSIZE=1000000
 
